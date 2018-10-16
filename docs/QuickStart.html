@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Quick Start · Documents for Excel, .NET Edition</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The following quick start sections help you in getting started with the GcPdf library:"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Quick Start · Documents for Excel, .NET Edition"/><meta property="og:type" content="website"/><meta property="og:url" content="https://your-docusaurus-test-site.com/gcdoctest/index.html"/><meta property="og:description" content="The following quick start sections help you in getting started with the GcPdf library:"/><meta property="og:image" content="https://your-docusaurus-test-site.com/gcdoctest/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://your-docusaurus-test-site.com/gcdoctest/img/docusaurus.png"/><link rel="shortcut icon" href="/gcdoctest/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://your-docusaurus-test-site.com/gcdoctest/blog/atom.xml" title="Documents for Excel, .NET Edition Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://your-docusaurus-test-site.com/gcdoctest/blog/feed.xml" title="Documents for Excel, .NET Edition Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/gcdoctest/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/gcdoctest/"><img class="logo" src="/gcdoctest/img/docusaurus.svg" alt="Documents for Excel, .NET Edition"/><h2 class="headerTitleWithLogo">Documents for Excel, .NET Edition</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/gcdoctest/docs/Overview" target="_self">Docs</a></li><li class=""><a href="/gcdoctest/docs/doc4" target="_self">API</a></li><li class=""><a href="/gcdoctest/en/help" target="_self">Help</a></li><li class=""><a href="/gcdoctest/blog" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">GCPDF Overview</h3><ul><li class="navListItem"><a class="navItem" href="/gcdoctest/docs/Overview">Overview</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Key Features</h3><ul><li class="navListItem"><a class="navItem" href="/gcdoctest/docs/KeyFeatures">KeyFeatures</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul><li class="navListItem"><a class="navItem" href="/gcdoctest/docs/GettingStarted">Getting Started</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/gcdoctest/docs/QuickStart">Quick Start</a></li><li class="navListItem"><a class="navItem" href="/gcdoctest/docs/License Information">License Information</a></li><li class="navListItem"><a class="navItem" href="/gcdoctest/docs/Upgrade">Upgrade to Latest Version</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/dinoreborn/gcdoctest/tree/master/docs/QuickStart.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Quick Start</h1></header><article><div><span><p>The following quick start sections help you in getting started with the GcPdf library:
+Create and save a PDF document
+Load and modify a PDF document
+Create and save a PDF document
+This quick start helps you in getting started with the GcPdf library. It covers how to create a simple PDF document having a single page and draw string on it in a specified font using a .NET Core or .NET Standard application. Follow the steps below to get started:</p>
+<p>Create a new PDF document
+Draw a string on the PDF document
+Save the PDF document</p>
+<p>Step 1: Create a new PDF document
+Create a new application (.NET Core Console App\Windows Forms App) and add the references.
+Include the following namespaces
+using GrapeCity.Documents.Pdf;
+using GrapeCity.Documents.Text;
+Create a new PDF document using an instance of GcPdfDocument and define a text format for drawing a string, through code.
+C#
+Copy Code
+// Create a new PDF document:
+GcPdfDocument doc = new GcPdfDocument();
+// Add a page, and get its Graphics object to draw on:
+GcPdfGraphics g = doc.NewPage().Graphics;
+// Create a text format for the &quot;Hello World!&quot; string:
+TextFormat tf = new TextFormat();
+// Use standard Times font
+tf.Font = StandardFonts.Times;
+// Pick a font size:
+tf.FontSize = 14;
+Back to Top</p>
+<p>Step 2: Draw a string on the PDF document
+Add the following code that uses DrawString method of GcGraphics class to draw string.</p>
+<p>C#
+// Draw the string at (1&quot;,1&quot;) from top/left of page
+//(72 dpi is the default PDF graphics' resolution):
+g.DrawString(&quot;Hello, World!&quot;, tf, new PointF(72, 72));
+Back to Top</p>
+<p>Step 3: Save the document
+Save the document using Save method of the GcPdfDocument class.</p>
+<p>C#
+//Save PDF document
+doc.Save(&quot;filename.pdf&quot;);
+Back to Top
+Load and modify a PDF document
+This quick start covers how to load an existing PDF document, modify and save it using a .NET Core or .NET Standard application. Follow the steps below to get started:</p>
+<p>Load an existing document in GcPdf
+Modify the PDF document
+Save the PDF document
+Step 1: Load an existing document in GcPdf
+Create a new application (.NET Core Console App\Windows Forms App) and add the references.
+Include the following namespace
+using GrapeCity.Documents.Pdf;
+Load an existing document using Load method of the GcPdfDocument class.
+C#
+GcPdfDocument doc = new GcPdfDocument();</p>
+<p>//Create an object of filestream
+var fs = new FileStream(Path.Combine(&quot;DocAttachment.pdf&quot;), FileMode.Open,
+FileAccess.Read);
+//Load the document
+doc.Load(fs);
+Back to Top
+Step 2: Modify the document
+Add a new page to the document using NewPage method of the GcPdfDocument class.
+C#
+Copy Code
+//Add a new page in the document
+GcPdfGraphics g = doc.NewPage().Graphics;
+Add the following code that uses DrawString method of GcGraphics class to draw string.
+C#
+Copy Code
+//Add text on the new page
+g.DrawString(&quot;This is a newly added page in the modified document.&quot;, new TextFormat()
+{
+Font = StandardFonts.Times,
+FontSize = 12
+}, new PointF(72, 72));
+Back to Top
+Step 3: Save the document
+Save the document using Save method of the GcPdfDocument class.</p>
+<p>C#
+Copy Code
+//Save the document
+doc.Save(&quot;ModifiedDocument.pdf&quot;);
+Back to Top</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/gcdoctest/docs/GettingStarted">← Getting Started</a><a class="docs-next button" href="/gcdoctest/docs/License%20Information">License Information →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/gcdoctest/" class="nav-home"><img src="/gcdoctest/img/docusaurus.svg" alt="Documents for Excel, .NET Edition" width="66" height="58"/></a><div><h5>Docs</h5><a href="/gcdoctest/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/gcdoctest/docs/en/doc2.html">Guides (or other categories)</a><a href="/gcdoctest/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/gcdoctest/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/gcdoctest/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/gcdoctest/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 GrapeCity, Inc. All Rights Reserved.</section></footer></div></body></html>
